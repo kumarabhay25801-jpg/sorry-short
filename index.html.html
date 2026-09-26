@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    overflow:hidden;
+}
+
+.page{
+    display:none;
+    width:100vw;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+}
+
+.page.active{
+    display:flex;
+}
+
+button{
+    border:none;
+    padding:13px 28px;
+    border-radius:30px;
+    font-size:17px;
+    cursor:pointer;
+    background:#9b4d68;
+    color:white;
+    box-shadow:0 8px 20px rgba(0,0,0,.15);
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.06);
+}
+
+.goBack{
+    position:absolute;
+    bottom:25px;
+    left:25px;
+    background:#76546a;
+    color:white;
+    padding:12px 22px;
+    border-radius:25px;
+    font-size:16px;
+    font-weight:bold;
+    z-index:100;
+}
+
+
+/* PAGE 1 */
+
+#page1{
+    background:linear-gradient(135deg,#f7d8e7,#ddd1f4);
+}
+
+.envelope{
+    width:220px;
+    height:140px;
+    background:#f3b6c8;
+    border-radius:10px;
+    position:absolute;
+    top:38%;
+    transform:translateY(-50%);
+    box-shadow:0 15px 35px rgba(0,0,0,.18);
+    transition:1s;
+    z-index:6;
+}
+
+.envelope:before{
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    border-left:110px solid transparent;
+    border-right:110px solid transparent;
+    border-top:80px solid #df91aa;
+    transform-origin:top;
+    transition:1s;
+}
+
+.envelope.open:before{
+    transform:rotateX(180deg);
+}
+
+.paper{
+    width:190px;
+    height:120px;
+    background:#fffaf3;
+    border-radius:5px;
+    position:absolute;
+    top:34%;
+    opacity:0;
+    transform:translateY(100px);
+    transition:1s;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+    z-index:5;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.paper.show{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.paper.flip{
+    animation:paperFlip .8s ease-in-out;
+}
+
+@keyframes paperFlip{
+    0%{
+        transform:translateY(0) rotateY(0deg);
+    }
+    50%{
+        transform:translateY(0) rotateY(90deg);
+    }
+    100%{
+        transform:translateY(0) rotateY(0deg);
+    }
+}
+
+.hii{
+    opacity:0;
+    font-size:42px;
+    color:#9b4d68;
+    font-weight:bold;
+    position:relative;
+    z-index:10;
+}
+
+.hii.show{
+    opacity:1;
+}
+
+.envelope.crush{
+    transform:translateY(-50%) scale(.1) rotate(25deg);
+    opacity:0;
+}
+
+.dustbin{
+    width:90px;
+    height:100px;
+    background:#777;
+    border-radius:8px 8px 15px 15px;
+    position:absolute;
+    top:57%;
+    left:50%;
+    transform:translate(-50%,100px);
+    opacity:0;
+    transition:1s;
+    z-index:2;
+}
+
+.dustbin:before{
+    content:"";
+    width:105px;
+    height:15px;
+    background:#555;
+    position:absolute;
+    left:-7px;
+    top:-10px;
+    border-radius:5px;
+}
+
+.dustbin.show{
+    opacity:1;
+    transform:translate(-50%,0);
+}
+
+.dustbin.leave{
+    transform:translate(-50%,150px);
+    opacity:0;
+}
+
+.next1{
+    position:absolute;
+    bottom:45px;
+    opacity:0;
+    pointer-events:none;
+    transition:1s;
+    z-index:20;
+}
+
+.next1.show{
+    opacity:1;
+    pointer-events:auto;
+}
+
+
+/* PAGE 2 */
+
+#page2{
+    background:linear-gradient(135deg,#fff1dc,#f6d4e5);
+}
+
+#page2 h1{
+    color:#7d3f59;
+    margin-bottom:25px;
+}
+
+.photos{
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:850px;
+}
+
+.photo{
+    width:170px;
+    height:210px;
+    object-fit:cover;
+    border-radius:18px;
+    background:#fff;
+    padding:6px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.sticker{
+    position:absolute;
+    font-size:38px;
+    animation:float 3s ease-in-out infinite;
+}
+
+.s1{top:10%;left:8%}
+.s2{top:15%;right:10%}
+.s3{bottom:12%;left:9%}
+.s4{bottom:15%;right:8%}
+
+@keyframes float{
+    50%{
+        transform:translateY(-12px) rotate(5deg);
+    }
+}
+
+
+/* PAGE 3 */
+
+#page3{
+    background:linear-gradient(135deg,#fff0da,#f8d9e7);
+}
+
+.messageCard{
+    width:min(520px,82vw);
+    padding:40px 32px;
+    background:rgba(255,255,255,.75);
+    border-radius:25px;
+    box-shadow:0 15px 40px rgba(120,70,90,.15);
+    border:2px solid rgba(255,255,255,.7);
+}
+
+.messageCard h1{
+    color:#833e5d;
+    margin-top:0;
+    font-size:35px;
+}
+
+.messageCard p{
+    color:#684052;
+    font-size:20px;
+    line-height:1.7;
+    margin:15px 0 0;
+}
+
+.messageEmoji{
+    position:absolute;
+    font-size:38px;
+    animation:float 3s ease-in-out infinite;
+}
+
+.m1{top:12%;left:10%}
+.m2{top:15%;right:10%}
+.m3{bottom:14%;left:12%}
+.m4{bottom:12%;right:12%}
+
+
+/* PAGE 4 */
+
+#page4{
+    background:linear-gradient(135deg,#ffe4cf,#f7d5e6,#e8d9f5);
+}
+
+#page4 h1{
+    color:#833e5d;
+    font-size:40px;
+    margin-bottom:25px;
+}
+
+.sorryCards{
+    display:flex;
+    gap:18px;
+    justify-content:center;
+    flex-wrap:wrap;
+    max-width:850px;
+}
+
+.sorryCard{
+    width:190px;
+    min-height:150px;
+    padding:25px 15px;
+    background:rgba(255,255,255,.8);
+    border-radius:20px;
+    box-shadow:0 12px 25px rgba(100,60,80,.15);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    color:#684052;
+    font-weight:bold;
+    font-size:18px;
+    transition:.3s;
+}
+
+.sorryCard:hover{
+    transform:translateY(-8px) rotate(-2deg);
+}
+
+.sorryCard span{
+    font-size:42px;
+    margin-bottom:12px;
+}
+
+
+/* PAGE 5 */
+
+#page5{
+    background:linear-gradient(135deg,#f9d9e7,#e0d5f5,#ffe8d4);
+}
+
+.promiseHeart{
+    font-size:85px;
+    animation:heartBeat 1.2s infinite;
+    margin-bottom:15px;
+}
+
+@keyframes heartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.15);
+    }
+}
+
+#page5 h1{
+    color:#833e5d;
+    font-size:38px;
+    max-width:700px;
+}
+
+.promiseText{
+    color:#684052;
+    font-size:21px;
+    max-width:600px;
+    line-height:1.6;
+}
+
+.promiseSeal{
+    margin-top:20px;
+    padding:12px 25px;
+    border:2px dashed #9b4d68;
+    border-radius:30px;
+    color:#833e5d;
+    font-weight:bold;
+    background:rgba(255,255,255,.45);
+}
+
+
+/* PAGE 6 */
+
+#page6{
+    background:linear-gradient(135deg,#fff2c9,#ffd9d9,#f5d5ee);
+}
+
+#page6 h1{
+    color:#7d405b;
+    font-size:48px;
+}
+
+.boy{
+    width:180px;
+    max-width:35vw;
+    margin-top:35px;
+}
+
+.page6emoji{
+    position:absolute;
+    font-size:35px;
+    animation:float 3s ease-in-out infinite;
+}
+
+.e1{top:12%;left:10%}
+.e2{top:18%;right:10%}
+.e3{bottom:15%;left:8%}
+.e4{bottom:12%;right:9%}
+.e5{top:50%;left:4%}
+
+
+/* PAGE 7 */
+
+#page7{
+    background:linear-gradient(135deg,#f8d5e5,#dcd0f5,#fbe4d5);
+}
+
+#page7 h1{
+    color:#833e5d;
+    font-size:45px;
+    margin-bottom:15px;
+}
+
+.loveText{
+    font-size:25px;
+    color:#684052;
+    font-weight:bold;
+}
+
+.finalButton{
+    margin-top:40px;
+}
+
+.finalSticker{
+    position:absolute;
+    font-size:40px;
+    animation:float 3s ease-in-out infinite;
+}
+
+.f1{top:10%;left:8%}
+.f2{top:13%;right:9%}
+.f3{bottom:13%;left:10%}
+.f4{bottom:10%;right:8%}
+
+</style>
+
+</head>
+
+<body>
+
+<audio id="song" preload="auto">
+    <source src="./song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+```
+<div class="envelope" id="envelope"></div>
+
+<div class="paper" id="paper">
+    <div class="hii" id="hii">HII</div>
+</div>
+
+<div class="dustbin" id="dustbin"></div>
+
+<button class="next1" id="next1">
+    Next ❤️
+</button>
+```
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+```
+<div class="sticker s1">❤️</div>
+<div class="sticker s2">🏮</div>
+<div class="sticker s3">✉️</div>
+<div class="sticker s4">😊</div>
+
+<h1>APCA BCHA AAPSE KUCHH KEHNA CHAHTA H</h1>
+
+<div class="photos">
+    <img src="photo1.jpg" class="photo">
+    <img src="photo2.jpg" class="photo">
+    <img src="photo3.jpg" class="photo">
+    <img src="photo4.jpg" class="photo">
+</div>
+
+<button id="next2" style="margin-top:30px;">
+    Next ❤️
+</button>
+
+<button class="goBack" id="back2">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+```
+<div class="messageEmoji m1">💌</div>
+<div class="messageEmoji m2">❤️</div>
+<div class="messageEmoji m3">🌸</div>
+<div class="messageEmoji m4">🥺</div>
+
+<div class="messageCard">
+
+    <h1>A LITTLE MESSAGE 💌</h1>
+
+    <p>
+        Kabhi kabhi choti si baat bhi
+        badi misunderstanding ban jaati hai...
+        <br><br>
+        Bas itna kehna tha ki
+        mera intention kabhi bhi aapco hurt karna nahi tha.
+        ❤️
+    </p>
+
+</div>
+
+<button id="next3" style="margin-top:30px;">
+    Next ❤️
+</button>
+
+<button class="goBack" id="back3">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page" id="page4">
+
+```
+<h1>THINGS I'M SORRY FOR 🥺</h1>
+
+<div class="sorryCards">
+
+    <div class="sorryCard">
+        <span>😭</span>
+        Overreacting
+    </div>
+
+    <div class="sorryCard">
+        <span>🥲</span>
+        Mood Kharab Karna
+    </div>
+
+    <div class="sorryCard">
+        <span>💔</span>
+        Aapco Hurt Karna
+    </div>
+
+</div>
+
+<button id="next4" style="margin-top:30px;">
+    Next ❤️
+</button>
+
+<button class="goBack" id="back4">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page" id="page5">
+
+```
+<div class="promiseHeart">
+    ❤️
+</div>
+
+<h1>
+    I'LL TRY TO UNDERSTAND YOU BETTER
+</h1>
+
+<div class="promiseText">
+    Galtiyan ho sakti hain,
+    but I'll always try to learn from them
+    and make things better. 🫶
+</div>
+
+<div class="promiseSeal">
+    A SMALL PROMISE 🤝❤️
+</div>
+
+<button id="next5" style="margin-top:30px;">
+    Next ❤️
+</button>
+
+<button class="goBack" id="back5">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page" id="page6">
+
+```
+<div class="page6emoji e1">😭</div>
+<div class="page6emoji e2">🍌</div>
+<div class="page6emoji e3">🙏</div>
+<div class="page6emoji e4">🥳</div>
+<div class="page6emoji e5">❤️</div>
+
+<h1>I AM SORRY</h1>
+
+<img src="boy.gif" class="boy" id="boy">
+
+<button id="next6" style="margin-top:35px;">
+    Next ❤️
+</button>
+
+<button class="goBack" id="back6">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<!-- PAGE 7 -->
+
+<section class="page" id="page7">
+
+```
+<div class="finalSticker f1">❤️</div>
+<div class="finalSticker f2">🥳</div>
+<div class="finalSticker f3">😊</div>
+<div class="finalSticker f4">💌</div>
+
+<h1>I LOVE YOUU SOO MUCHHHH</h1>
+
+<div class="loveText">
+    AAGE SE DUBARA KARUNGA 😁🥳
+</div>
+
+<button class="finalButton">
+    ITS OK ❤️
+</button>
+
+<button class="goBack" id="back7">
+    ← GO BACK
+</button>
+```
+
+</section>
+
+<script>
+
+/* PAGE 1 ANIMATION */
+
+const envelope = document.getElementById("envelope");
+const paper = document.getElementById("paper");
+const dustbin = document.getElementById("dustbin");
+const hii = document.getElementById("hii");
+const next1 = document.getElementById("next1");
+
+setTimeout(function(){
+    envelope.classList.add("open");
+},700);
+
+setTimeout(function(){
+    paper.classList.add("show");
+},1300);
+
+setTimeout(function(){
+    envelope.classList.add("crush");
+},3500);
+
+setTimeout(function(){
+    dustbin.classList.add("show");
+},4200);
+
+setTimeout(function(){
+    envelope.style.display="none";
+},5000);
+
+setTimeout(function(){
+    dustbin.classList.add("leave");
+},5700);
+
+setTimeout(function(){
+    paper.classList.add("flip");
+},6500);
+
+setTimeout(function(){
+    hii.classList.add("show");
+},7100);
+
+setTimeout(function(){
+    next1.classList.add("show");
+},8600);
+
+
+/* PAGE SWITCH */
+
+function showPage(pageNumber){
+
+    document.querySelectorAll(".page").forEach(function(page){
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page" + pageNumber).classList.add("active");
+}
+
+
+/* PAGE 1 → PAGE 2 + SONG */
+
+const song = document.getElementById("song");
+
+next1.addEventListener("click",function(){
+
+    song.currentTime = 0;
+
+    song.play().catch(function(error){
+        console.log("Song error:",error);
+    });
+
+    showPage(2);
+
+});
+
+
+/* PAGE 2 */
+
+document.getElementById("next2").addEventListener("click",function(){
+    showPage(3);
+});
+
+document.getElementById("back2").addEventListener("click",function(){
+    showPage(1);
+});
+
+
+/* PAGE 3 */
+
+document.getElementById("next3").addEventListener("click",function(){
+    showPage(4);
+});
+
+document.getElementById("back3").addEventListener("click",function(){
+    showPage(2);
+});
+
+
+/* PAGE 4 */
+
+document.getElementById("next4").addEventListener("click",function(){
+    showPage(5);
+});
+
+document.getElementById("back4").addEventListener("click",function(){
+    showPage(3);
+});
+
+
+/* PAGE 5 */
+
+document.getElementById("next5").addEventListener("click",function(){
+    showPage(6);
+});
+
+document.getElementById("back5").addEventListener("click",function(){
+    showPage(4);
+});
+
+
+/* PAGE 6 */
+
+document.getElementById("next6").addEventListener("click",function(){
+    showPage(7);
+});
+
+document.getElementById("back6").addEventListener("click",function(){
+    showPage(5);
+});
+
+
+/* PAGE 7 */
+
+document.getElementById("back7").addEventListener("click",function(){
+    showPage(6);
+});
+
+
+/* BOY ANIMATION */
+
+const boy = document.getElementById("boy");
+
+function continuousSitups(){
+
+    boy.animate(
+        [
+            {
+                transform:"translateY(0)"
+            },
+            {
+                transform:"translateY(-45px)"
+            },
+            {
+                transform:"translateY(0)"
+            }
+        ],
+        {
+            duration:900,
+            easing:"ease-in-out"
+        }
+    );
+
+    setTimeout(continuousSitups,950);
+}
+
+continuousSitups();
+
+</script>
+
+</body>
+</html>
